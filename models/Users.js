@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: {
       type: DataTypes.STRING(30),
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     mail: {
       type: DataTypes.STRING(30),
@@ -27,7 +28,13 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 1
     },
     createdAt: Sequelize.DATE,
-    updatedAt: Sequelize.DATE
+    updatedAt: Sequelize.DATE,
+    photo: {
+      type: DataTypes.STRING()
+    },
+    collections: {
+      type: DataTypes.JSON
+    }
   })
   return Users;
 }

@@ -5,7 +5,7 @@ const db = require("../models");
 
 router.get('/users',(req,res) => {
   db.Users.findAll({
-    attributes: ['name','mail','id','createdAt','updatedAt','active']
+    attributes: ['id','name','mail','active','createdAt','updatedAt','photo']
   }).then(users => res.send(users))
 });
 
