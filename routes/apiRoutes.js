@@ -18,7 +18,7 @@ router.post('/register',(req,res)=>{
   db.Users.create({
     name: name,
     mail: mail,
-    password: getSHA256(password)
+    password: getSHA256(password, name)
   }).then((response)=>res.send(response));
 });
 
@@ -52,9 +52,8 @@ router.post('/login', (req,res)=> {
 
 module.exports = router;
 
-
-function getSHA256(value) {
-  const crypto = require('crypto');
-  const hash = crypto.createHash('sha256');
-  return hash.update(value).digest('hex');
+function getSHA256(value, key) {
+  const { createHmac } = require('node:crypto');
+  const hash = createHmac('sha256',key).update(value).digest('hex');
+  return hash
 }
