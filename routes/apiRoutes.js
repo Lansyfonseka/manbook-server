@@ -4,9 +4,13 @@ const router = express.Router()
 const db = require("../models");
 
 router.get('/users',(req,res) => {
-  db.Users.findAll({
-    attributes: ['id','name','mail','active','createdAt','updatedAt','photo']
-  }).then(users => res.send(users))
+  // db.Users.findAll({
+  //   attributes: ['id','name','mail','active','createdAt','updatedAt','photo']
+  // }).then(users => res.send(users))
+  res.json({
+    status: 200,
+    message: "It's working good!"
+  })
 });
 
 router.post('/register',(req,res)=>{
