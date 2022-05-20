@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { application } = require('express');
+// const { application } = require('express');
 
 const db = require('./models');
 
@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cors());
 
-const apiRoutes = require('./routes/apiRoutes');
+const apiRoutes = require('./api/apiRouter');
 app.use('/api',apiRoutes);
 
 db.sequelize.sync().then( () => {
