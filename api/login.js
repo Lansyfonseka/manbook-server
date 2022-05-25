@@ -1,5 +1,6 @@
 const db = require("../models");
 const SHA256 = require('./helpers/SHA256');
+const generateAccessToken = require('./helpers/generateAccessToken')
 
 const login = (req, res) => {
   const {mail,password} = req.body;
@@ -18,13 +19,15 @@ const login = (req, res) => {
       });
     else {
       const {name,mail,id} = response.pop();
-      console.log(mail);
+      const token = generateAccessToken({id:id})
+
       res.send({
         status: 200,
         user: {
           id: id,
           mail: mail,
-          name: name
+          name: name,
+          token: token
         }
       })
     }
