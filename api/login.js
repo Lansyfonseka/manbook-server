@@ -5,7 +5,7 @@ const generateAccessToken = require('./helpers/generateAccessToken')
 const login = (req, res) => {
   const {mail,password} = req.body;
 
-  db.Users.findAll({
+  db.User.findAll({
     attributes: ['name', 'mail', 'id'],
     where: {
       mail: mail,

@@ -1,11 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": "w123578951",
+    "password": "892t5c45r2",
     "database": "manbook",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": 0
+    "operatorsAliases": 0,
+    "define": {
+      "freezeTableName": true
+    }
   },
   "production": {
     "username": "usoza3v9fqxjj54c",

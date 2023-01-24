@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Collections = sequelize.define("Collections", {
+  const Collection = sequelize.define("Collection", {
     id: {
       type: DataTypes.INTEGER(30),
       allowNull: false,
@@ -13,16 +13,15 @@ module.exports = (sequelize, DataTypes) => {
     decription: {
       type: DataTypes.STRING()
     },
-    author: {
-      type: DataTypes.STRING(30),
-      allowNull: false
-    },
     photo: {
       type: DataTypes.STRING()
     },
-    collections: {
-      type: DataTypes.JSON
+    topic: {
+      type: DataTypes.STRING(30)
+    },
+    fields: {
+      type: DataTypes.STRING()
     }
   })
-  return Collections;
+  return Collection;
 }

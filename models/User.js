@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  const Users = sequelize.define("Users", {
+  const User = sequelize.define("User", {
     id: {
       type: DataTypes.INTEGER(30),
       allowNull: false,
@@ -22,19 +22,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(65),
       allowNull: false
     },
-    active: {
-      type: DataTypes.BOOLEAN,
+    role: {
+      type: DataTypes.INTEGER(30),
       allowNull: false,
       defaultValue: 1
     },
-    createdAt: Sequelize.DATE,
-    updatedAt: Sequelize.DATE,
     photo: {
       type: DataTypes.STRING()
     },
-    collections: {
-      type: DataTypes.JSON
+    settings: {
+      type: DataTypes.INTEGER(30)
     }
   })
-  return Users;
+  return User;
 }

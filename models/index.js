@@ -9,14 +9,7 @@ const config = require(__dirname + '/../config/config.json')[env];
 config.dialectModule = require('mysql2');
 
 const db = {};
-let sequelize;
-
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-  // sequelize = new Sequelize(congifDeploy.database,congifDeploy.user,congifDeploy.password, congifDeploy)
-}
+let sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 fs
   .readdirSync(__dirname)
@@ -26,7 +19,7 @@ fs
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
-    console.log(model);
+    console.log(model.name);
   });
 
 Object.keys(db).forEach(modelName => {
@@ -34,6 +27,11 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
+
+db.User.hasMany(db.Collection);
+db.Collection.hasMany(db.Item);
+db.Item.hasMany(db.Comment);
+db.Comment.belongsTo(db.User);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

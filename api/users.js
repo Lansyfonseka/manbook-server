@@ -1,7 +1,7 @@
 const db = require("../models");
 
 const getUsers = (req, res) => {
-  db.Users.findAll({
+  db.User.findAll({
     attributes: ['id','name','mail','active','createdAt','updatedAt','photo']
   }).then(users => res.send(users))
 }
